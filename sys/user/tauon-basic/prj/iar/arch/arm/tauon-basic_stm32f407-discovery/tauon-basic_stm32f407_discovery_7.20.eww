@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<workspace>
+  <project>
+    <path>$WS_DIR$\..\..\..\..\..\..\..\root\prj\iar\arch\arm\dev\stm32f4xx\dev_stm32f4xx_7.20.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$\..\..\..\..\..\..\..\root\prj\iar\arch\arm\tauon\tauon_7.20.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$\tauon-basic_stm32f407_discovery_7.20.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>all debug</name>
+      <member>
+        <project>dev_stm32f4xx_7.20</project>
+        <configuration>Debug</configuration>
+      </member>
+      <member>
+        <project>tauon_7.20</project>
+        <configuration>tauon-kernel-cortex-m4-debug</configuration>
+      </member>
+      <member>
+        <project>tauon-basic_stm32f407_discovery_7.20</project>
+        <configuration>Debug</configuration>
+      </member>
+    </batchDefinition>
+    <batchDefinition>
+      <name>all freertos debug</name>
+      <member>
+        <project>dev_stm32f4xx_7.20</project>
+        <configuration>Debug</configuration>
+      </member>
+      <member>
+        <project>tauon_7.20</project>
+        <configuration>tauon-kernel-cortex-m4f-freertos-debug</configuration>
+      </member>
+      <member>
+        <project>tauon-basic_stm32f4_7.20</project>
+        <configuration>freertos-debug</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>
+
+
