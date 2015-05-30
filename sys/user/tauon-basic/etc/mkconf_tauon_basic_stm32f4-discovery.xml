@@ -1,0 +1,192 @@
+<?xml version='1.0'?>
+<!-- $Revision: 1.4 $ $Date: 2009/07/15 14:38:42 $ -->
+
+<mklepton>
+<target name="win32_lepton">
+      <arch dest_path="c:/tauon/sys/root/src/kernel/core/arch/win32" />
+</target>
+
+<target name="cortexm_lepton">
+      <arch dest_path="c:/tauon/sys/root/src/kernel/core/arch/cortexm" /><!--/cortexm or /arm-->
+</target>
+
+<kernel>
+      <target name="win32_lepton">
+         <arch include_absolute_path="c:/tauon/sys/user/tauon-basic/src/arch/win32/kernel_mkconf/include/user_kernel_mkconf.h" />
+      </target>
+      
+      <target name="cortexm_lepton">
+         <arch include_absolute_path="c:/tauon/sys/user/tauon-basic/src/arch/st-stm32f407-discovery/kernel_mkconf/include/user_kernel_mkconf.h" />
+      </target>
+      
+      <!-- cpu type and frequency in MHz or Hz-->
+      <target name="win32_lepton">
+         <cpu freq="10"/>
+      </target>
+      
+      <target name="cortexm_lepton">
+         <cpu type="cpu_arm7" freq="80000000"/>
+      </target>
+      
+      
+      <!-- total heap size (__KERNEL_HEAP_SIZE ) for all processes stack  (only for m16C arch)-->
+      <heap size="10000" />
+
+      <!-- process max (__KERNEL_PROCESS_MAX: must be strictly less than thread max)-->
+      <process max="10" />
+
+      <!-- max open file (MAX_OPEN_FILE)-->
+      <openfiles max="16" />
+
+      <!-- max descriptor per process (OPEN_MAX)-->
+      <descriptors max="8" />
+
+      <!-- cpu built-in file-system (see fileflash device) -->
+      <!-- <cpufs size="16000" /> -->
+      <target name="cortexm_lepton">
+         <!--cpufs size="32000" node="128" blocksz="64"/-->
+          <cpufs size="64000" node="256" blocksz="256"/> 
+         <!--cpufs size="73000" node="128" blocksz="64"/-->
+         <!--cpufs size="128000" node="128" blocksz="64"/-->
+      </target>
+
+      <!-- bin path (__KERNEL_ENV_PATH)-->
+      <env path="/usr;/usr/sbin;/usr/bin;usr/bin/net" />
+
+      <!-- use ip stack (__KERNEL_NET_UIP)-->
+      <network use="off" />
+   
+</kernel>
+
+<!-- devices drivers-->
+<devices>
+   <!-- /dev/null -->
+   <dev name="dev_null_map"     use="on"/>
+   <!-- /dev/proc -->
+   <dev name="dev_proc_map"     use="on"/>
+   <!-- /dev/hd/hda -->
+   <dev name="dev_cpufs_map"    use="on"/>
+    <!-- /dev/pipe -->
+   <dev name="dev_pipe_map"     use="on"/>
+   <!-- /dev/ppp -->
+   <dev name="dev_ppp_uip_map"  use="off"/>
+   <!-- /dev/tty0 -->
+   <dev name="dev_tty_map"      use="off"/>
+   <!-- /dev/sock uip-->
+   <dev name="dev_sock_map"     use="off"/>
+   <!-- /dev/sock lwip-->
+   <dev name="dev_lwip_sock_map"    use="off"/>
+   <!-- /dev/ip lwip ip stack-->
+   <dev name="dev_lwip_stack_map"   use="off"/>
+</devices>
+
+<target name="win32_lepton">
+   <devices>
+       <!-- /dev/hd/hd(x) -->
+       <dev name="dev_win32_filerom_map" use="on"/>
+       <!-- /dev/hd/hd(x) -->
+       <dev name="dev_win32_fileflash_map" use="on"/>
+       <!-- /dev/ttys0 -->
+       <dev name="dev_win32_com0_map" use="on"/>
+       <!-- /dev/rtc0 -->
+       <dev name="dev_win32_rtc_map" use="on"/>
+       <!-- /dev/eth0 -->
+       <dev name="dev_win32_eth_map" use="on"/>
+   </devices>
+</target>
+
+<target name="cortexm_lepton">
+   <devices>
+      <!-- /dev/cpu0 arm7 cpu device -->
+      <dev name="dev_at91_map"                   use="off"/>
+      <!-- /dev/cpu0 -->
+	   <dev name="dev_lm3s_cpu_map"               use="on"/>
+	   <!-- /dev/board -->
+	   <dev name="dev_stm32f4xx_olimex_board_map" use="on"/>
+      <!-- /dev/ttys3 -->
+      <dev name="dev_stm32f4xx_uart_s6_map"      use="on"/>
+	   <!-- /dev/itm0 -->
+      <dev name="dev_cmsis_itm0_map"             use="on"/>
+	   <!-- /dev/debug -->
+      <dev name="dev_os_debug_map"               use="on"/>
+      <!-- /dev/spi0 -->
+      <dev name="dev_stm32f4xx_spi_3_map"        use="on"/>
+       <!-- /dev/eth0 -->
+      <dev name="dev_stm32f4xx_eth_map"          use="off"/>
+   </devices>
+</target>
+
+
+<!-- mount device on boot .mount -->
+<mount dest_path="c:/tauon/sys/user/tauon-basic/etc">
+    <!-- mount EEPROM on /etc -->
+    <disk type="ufs" dev="/dev/hd/hdb" point="/etc" />
+</mount>
+
+<!-- launch process on boot target path: /usr/etc/.boot-->
+<target name="win32_lepton">
+        <boot dest_path="c:/tauon/sys/user/tauon-basic/etc">
+                <command arg="initd -i /dev/ttyp0 -o /dev/ttyp0" />
+        </boot>
+</target>
+
+<target name="cortexm_lepton">
+        <boot dest_path="c:/tauon/sys/user/tauon-basic/etc">
+            <command arg="initd -i /dev/ttys6 -o /dev/ttys6" />
+				<!--command arg="initd -i /dev/debug -o /dev/debug" /-->
+        </boot>
+</target>
+
+
+<!-- binaries. see ...-->
+<!-- /usr/bin -->
+<binaries src_path="sbin" dest_path="sbin">
+   <bin name="initd"    stack="2048"    priority="100" timeslice="1" />
+   <bin name="lsh"      stack="2048"    priority="100" timeslice="1" />
+   <bin name="mount"    stack="2048"    priority="100" timeslice="1" />
+   <bin name="umount"   stack="2048"    priority="100" timeslice="1" />
+   <bin name="ls"       stack="2048"    priority="100" timeslice="1" />
+   <bin name="ps"       stack="2048"    priority="100" timeslice="1" />
+   <bin name="kill"     stack="2048"    priority="100" timeslice="1" />
+   <bin name="touch"    stack="2048"    priority="100" timeslice="1" />
+   <bin name="cat"      stack="2048"    priority="100" timeslice="1" />
+   <bin name="more"     stack="2048"    priority="100" timeslice="1" />
+   <bin name="mkfs"     stack="2048"    priority="100" timeslice="1" />
+   <bin name="df"       stack="2048"    priority="100" timeslice="1" />
+   <bin name="uname"    stack="2048"    priority="100" timeslice="1" />
+   <bin name="pwd"      stack="2048"    priority="100" timeslice="1" />
+   <bin name="rmdir"    stack="2048"    priority="100" timeslice="1" />
+   <bin name="mkdir"    stack="2048"    priority="100" timeslice="1" />
+   <bin name="rm"       stack="2048"    priority="100" timeslice="1" />
+   <bin name="od"       stack="2048"    priority="100" timeslice="1" />
+   <bin name="date"     stack="2048"    priority="100" timeslice="1" />
+   <bin name="echo"     stack="2048"    priority="100" timeslice="1" />
+   <bin name="stty"     stack="2048"    priority="100" timeslice="1" />
+</binaries>
+
+
+<!-- user binaries. -->
+<!-- /usr/bin -->
+<binaries src_path="bin" dest_path="bin">
+        <bin name="test2"        stack="1024"    priority="100" timeslice="5" />
+        <!--bin name="udpsrvd"      stack="2048"    priority="10" timeslice="5" /-->
+</binaries>
+
+<!-- /usr/bin -->
+<binaries src_path="bin/tst" dest_path="bin/tst">
+        <bin name="tsteth"        stack="2048"    priority="100"  timeslice="5" />
+</binaries>
+
+<files>
+   <!-- /usr/etc  (hda internal flash mount on /bin) -->
+   <target name="win32_lepton">
+      <file name=".init"      src_file="c:/tauon/sys/user/tauon-basic/etc/.init_win32_with_net"      dest_path="etc" />
+   </target>
+    <target name="cortexm_lepton">
+      <file name=".init"      src_file="c:/tauon/sys/user/tauon-basic/etc/.init_olimex_with_net"  dest_path="etc" />
+   </target>
+   <file name=".boot"      src_file="c:/tauon/sys/user/tauon-basic/etc/.boot"               dest_path="etc" />
+   <file name=".mount"     src_file="c:/tauon/sys/user/tauon-basic/etc/.mount"              dest_path="etc" />
+</files>
+
+</mklepton>
