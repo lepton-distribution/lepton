@@ -53,6 +53,8 @@
 #ifndef __STM32F4xx_H
 #define __STM32F4xx_H
 
+#include "kernel/core/kernelconf.h"
+
 #ifdef __cplusplus
  extern "C" {
 #endif /* __cplusplus */

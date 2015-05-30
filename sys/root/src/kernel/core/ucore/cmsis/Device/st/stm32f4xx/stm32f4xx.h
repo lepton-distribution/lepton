@@ -50,6 +50,9 @@
 #ifdef __cplusplus
  extern "C" {
 #endif /* __cplusplus */
+
+//lepton include   
+#include "kernel/core/kernelconf.h"
   
 /** @addtogroup Library_configuration_section
   * @{

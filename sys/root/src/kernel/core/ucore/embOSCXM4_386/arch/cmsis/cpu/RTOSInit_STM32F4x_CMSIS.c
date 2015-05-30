@@ -43,7 +43,7 @@ Purpose : Initializes and handles the hardware for embOS as far
 #if (__tauon_cpu_device__==__tauon_cpu_device_cortexM3_LM3S__)  //GD
     #include "Device/lm3s/lm3s_cmsis.h"
 #elif (__tauon_cpu_device__ == __tauon_cpu_device_cortexM4_stm32f4__)
-   #include "Device/st/stm32f2xx/stm32f2xx.h"
+   #include "Device/st/stm32f4xx/stm32f4xx.h"
 #else
 #error "Device specific CMSIS include missing. Wrong CPU device chosen?"
 #endif

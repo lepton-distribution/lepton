@@ -303,7 +303,7 @@ void uart_dma_irq_handler(const _Uart_Descriptor *Uart)
     isr_evt_set((*Uart->Ctrl)->Event, (*Uart->Ctrl)->Task);
   #endif
   //
-  DMA_ClearITPendingBit(DMA1_Stream1, DMA_IT_ALL_1);
+  DMA_ClearITPendingBit(Uart->DMAy_Streamx, DMA_IT_ALL_1);
   //
   __hw_leave_interrupt();
   //

@@ -47,7 +47,7 @@ const _Gpio_Descriptor Gpio_Descriptor[] = {
 //   {GPIO_TYPE_STD, GPIOC,  GPIO_Pin_11,   0,  GPIO_FCT_IN,  0},   // GPIO_RXD3
 
   {GPIO_TYPE_STD, GPIOC,  GPIO_Pin_6,   0,  GPIO_MODE_IN,       0},   // GPIO_TXD6
-  {GPIO_TYPE_STD, GPIOG,  GPIO_Pin_9,   0,  GPIO_MODE_IN,       0},   // GPIO_RXD6
+  {GPIO_TYPE_STD, GPIOC,  GPIO_Pin_7,   0,  GPIO_MODE_IN,       0},   // GPIO_RXD6
 
   {GPIO_TYPE_STD, GPIOC,  GPIO_Pin_11,  0,  GPIO_MODE_IN,       0},   // GPIO_ID_MISO
   {GPIO_TYPE_STD, GPIOC,  GPIO_Pin_12,  0,  GPIO_MODE_IN,       0},   // GPIO_ID_MOSI
