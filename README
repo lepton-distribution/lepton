@@ -1,9 +1,9 @@
 LEPTON/TAUON OPERATING SYSTEM
 Lepton/Tauon is an open source POSIX "compliant" Operating System for 
 deeply embedded devices. It tries to bring PSE-53 POSIX capabilities 
-to embedded world (including multiprocess, filesystems, messages 
-queues, ... BUT currently no asynchronous I/O support). 
-The system implementation follows an UNIX approach.
+to embedded world (including multiprocess, filesystems, IP stacks, BSD socket,  messages 
+queues, ...). 
+The system implementation follows an UNIX approach. Unix « philosophy". Everything is file. Everything is a stream of bytes. 
 
 The aim of this project, it's not to develop another operating system 
 like GNU/Linux, but an human understandable operating system that provides 
@@ -44,19 +44,20 @@ Lepton/Tauon uses some parts of underlying real-time operating system:
    -. some libraries (math.h, stdlib.h, ...)
 
 In addition Lepton/Tauon offers:
-   -. more than 150 functions from POSIX standard (IEEE Std 1003.1a), 
-   realtime extension (1003.1b) and threads extension (1003.1c)
-   -. simple model for device drivers
-   -. UNIX stream to improve "reuse"
-   -. support lwip stack (1.3.2)
-   -. support uip stack (1.0) (Lepton only)
-   -. support rootfs, ufs, fat16 (msdos and vfat) filesystem
-   -. VFS layer to brings new and custom file systems 
-   -. USB devices stack and profils CDC-ACM, MSD and Ethernet-ECM (tested
-   only on AT91SAM9261-EK)
-   -. NanoX and FLTK support (FLNX exactly)
-   -. Mongoose WEB server, FTP server (from trollFTPD) and mini shell
-   -. simulation process under GNU/Linux (Tauon) and Windows (Lepton)
+  -. Unix « philosophy". Everything is file. Everything is a stream of bytes. 
+  -. more than 150 functions from POSIX standard (IEEE Std 1003.1a: open(), read(), write(), close(), ioctl(), select() …), BSD Socket…
+  realtime extension (1003.1b) and threads extension (1003.1c)
+  -. simple model for device drivers
+  -. UNIX stream to improve "reuse"
+  -. support lwip stack (1.3.2)
+  -. support uip stack (2.0 extracted from Contiki project ) (Lepton only)
+  -. support rootfs, ufs, fat16 (msdos and vfat) filesystem
+  -. VFS layer to brings new and custom file systems 
+  -. USB devices stack and profils CDC-ACM, MSD and Ethernet-ECM (tested
+  only on AT91SAM9261-EK)
+  -. NanoX and FLTK support (FLNX exactly)
+  -. Mongoose WEB server, FTP server (from trollFTPD) and mini shell
+  -. simulation process under GNU/Linux (Tauon) and Windows (Lepton)
 
 To install Lepton/Tauon and launch a sample application see docs/INSTALL.
 To see what is Lepton/Tauon, installation are tested on:
