@@ -1,4 +1,8 @@
 LEPTON/TAUON OPERATING SYSTEM
+
+Initial version of Lepton/Tauon is 4.0.0.0.
+(new version, still under construction, is available here :  https://github.com/lepton-distribution/lepton-root.scions).
+
 Lepton/Tauon is an open source POSIX "compliant" Operating System for 
 deeply embedded devices. It tries to bring PSE-53 POSIX capabilities 
 to embedded world (including multiprocess, filesystems, IP stacks, BSD socket,  messages 
@@ -26,8 +30,6 @@ Supported platforms:
    -. ARM Cortex-M4: STM32F4 Discovery (ST stm32F407)
 
    -. PC (32bits simulation for GNU/Linux and MS Windows)
-
-Initial version of Lepton/Tauon is 4.0.0.0.
 
 Lepton/Tauon provides more than 150 POSIX functions over a real-time
 operating system that can be:
@@ -96,11 +98,6 @@ Directories and/or files in this distribution:
    Currently, Tauon only supports lwip.
    -. sys/root/src/kernel/dev : source files for device drivers.
    
-
-Send comments/corrections/improvements to lepton-discuss@googlegroups.com.
-
-The Lepton/Tauon home page is http://code.google.com/p/lepton/.
-
 Thanks to:
    * eCos: http://ecos.sourceware.org/
    * lwip: http://savannah.nongnu.org/projects/lwip/
