@@ -1,7 +1,8 @@
 LEPTON/TAUON OPERATING SYSTEM
 
+New version is available here: https://github.com/lepton-distribution/lepton-original-tree.scions.
+
 Initial version of Lepton/Tauon is 4.0.0.0.
-(new version, still under construction, is available here :  https://github.com/lepton-distribution/lepton-root.scions).
 
 Lepton/Tauon is an open source POSIX "compliant" Operating System for 
 deeply embedded devices. It tries to bring PSE-53 POSIX capabilities 
